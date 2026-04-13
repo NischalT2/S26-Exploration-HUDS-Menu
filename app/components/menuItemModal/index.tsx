@@ -168,7 +168,7 @@ export default function MenuItemModal({ onClose }: MenuItemModalProps) {
             </div>
  
             {/* Footnote column (right side, narrow) */}
-            <div className="w-32 px-1.5 py-1 text-[9px] leading-tight text-gray-700 flex-shrink-0">
+            <div className="w-32 px-1.5 py-1 text-[9px] leading-tight text-gray-700 shrink-0">
               * The % Daily Value (DV) tells you how much a nutrient in a serving of
               food contributes to a daily diet. 2,000 calories a day is used for
               general nutrition advice.
