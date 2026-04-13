@@ -20,5 +20,6 @@ export default function Navbar() {
             <div className="w-4 h-0.5 bg-black"></div>
           </div>
         </div>
+      </div>
    );
 }
