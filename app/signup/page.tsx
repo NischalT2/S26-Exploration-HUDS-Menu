@@ -1,25 +1,6 @@
-export default function SignupPage() {
-  function SignupNavbar() {
-  return (
-    <div className="flex h-[58px] items-center justify-between bg-[#f3f3f3] px-6">
-      <h1 className="font-serif text-[28px] font-semibold text-[#A51C30]">
-        Harvard
-      </h1>
+import SignupNavbar from "../components/signupnav";
 
-      <button
-        type="button"
-        aria-label="Open menu"
-        className="flex h-10 w-10 items-center justify-center bg-[#A51C30]"
-      >
-        <div className="space-y-1">
-          <div className="h-[3px] w-6 bg-white" />
-          <div className="h-[3px] w-6 bg-white" />
-          <div className="h-[3px] w-6 bg-white" />
-        </div>
-      </button>
-    </div>
-  );
-}
+export default function SignupPage() {
 
   return (
     <div className="min-h-screen bg-[#A51C30]">
@@ -59,12 +40,20 @@ export default function SignupPage() {
                 className="h-[82px] w-full rounded-[14px] bg-[#e7dede] px-5 text-[24px] text-black outline-none"
               />
 
-              <a
-                href="#"
-                className="mt-2 inline-block text-[18px] font-bold text-black underline"
-              >
-                Forget Password
-              </a>
+              <div className="mt-2 flex items-center justify-between">
+                <a
+                  href="#"
+                  className="text-[18px] font-bold text-black underline"
+                >
+                  Forgot Password
+                </a>
+                <button
+                  type="submit"
+                  className="rounded-[10px] bg-[#A51C30] px-8 py-2 text-[18px] font-bold text-white"
+                >
+                  Sign In
+                </button>
+              </div>
             </div>
           </div>
         </div>
