@@ -4,7 +4,7 @@ type FoodButtonProps = {
 
 export default function FoodButton({ label }: FoodButtonProps) {
   return (
-    <button className="bg-stone-200 rounded-full px-6 py-4 font-bold text-slate-800">
+    <button type="button" className="rounded-full bg-stone-200 px-6 py-4 font-bold text-slate-800">
       {label}
     </button>
   );
