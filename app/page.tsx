@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import MenuItemModal from "@/components/menuItemModal";
+import MenuItemModal from "@/app/components/menuItemModal";
 
 export default function Home() {
   const [favoriteItems, setFavoriteItems] = useState<string[]>(() => {
@@ -91,7 +91,7 @@ export default function Home() {
 
         <div className="flex items-center justify-center gap-4 mb-4">
           <button className="text-white text-xl">‹</button>
-          <span className="text-white font-bold text-lg">Sun, Mar 8, 2026</span>
+          <span className="text-white font-bold text-lg">Sat, May 9, 2026</span>
           <button className="text-white text-xl">›</button>
         </div>
 
