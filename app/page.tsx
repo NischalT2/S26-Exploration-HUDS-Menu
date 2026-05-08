@@ -18,7 +18,6 @@ export default function Home() {
     setModalOpen(true);
   };
 
-// Write to localStorage whenever favoriteItems changes
   // Write to localStorage whenever favoriteItems changes
   useEffect(() => {
     localStorage.setItem("favoriteItems", JSON.stringify(favoriteItems));
@@ -64,27 +63,28 @@ export default function Home() {
           src="/huds_picture.jpg"
           alt="Annenberg Hall"
           width={1000}
-          height={600}
-          className="w-full rounded-2xl"
+          height={450}
+          className="w-full aspect-[1000/360] object-cover rounded-2xl"
+          priority
         />
       </div>
 
       {/* Red Block */}
-      <div className="bg-[#A51C30] mx-4 mt-4 rounded-2xl p-4 max-h-[60vh] overflow-hidden">
+      <div className="bg-[#A51C30] mx-4 mt-4 rounded-2xl p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex gap-2">
             <button className="bg-white text-black text-sm px-3 py-1 rounded-full">Dinner</button>
             <button className="bg-white text-black text-sm px-3 py-1 rounded-full flex items-center gap-1">
               Daily
-              <img src="/daily-icon.svg" alt="daily" className="h-4 w-4" />
+              <img src="/drop_down_icon.svg" alt="open daily menu" className="h-4 w-4" />
             </button>
             <button className="bg-white text-black text-sm px-3 py-1 rounded-full flex items-center gap-1">
-              A/BC/DEFG
-              <img src="/close-icon.svg" alt="remove" className="h-4 w-4" />
+              5/9/2026
+              <img src="/calendar_icon.svg" alt="select date" className="h-4 w-4" />
             </button>
           </div>
           <button className="bg-white text-black text-sm px-3 py-1 rounded-full flex items-center gap-1">
-            <img src="/filter-icon.svg" alt="filter" className="h-4 w-4" />
+            <img src="/filter_icon.svg" alt="filter" className="h-4 w-4" />
             Filter
           </button>
         </div>
@@ -95,6 +95,7 @@ export default function Home() {
           <button className="text-white text-xl">›</button>
         </div>
 
+        {/* Section: Entrees */}
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-white font-bold">Entrees</span>
@@ -114,16 +115,57 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Section: Salad Bar */}
         <div className="mt-8 mb-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-white font-bold">Entrees</span>
+            <span className="text-white font-bold">Salad Bar</span>
             <div className="flex-1 h-px bg-white opacity-50"></div>
             <button className="text-white text-xl">⊖</button>
           </div>
           <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-2">
-            {["XYZ", "XYZ", "XYZ", "XYZ"].map((item, i) => (
+            {["Caesar Salad", "Baby Arugula", "Cottage Cheese", "Quinoa Black Bean and Roast Corn Salad"].map((item, i) => (
               <button
                 key={i}
+                onClick={() => openModal(item)}
+                className="bg-[#f0e8e8] text-black text-sm px-3 py-3 rounded-full text-center hover:bg-[#e0d0d0] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Section: Sides */}
+        <div className="mt-8 mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white font-bold">Sides</span>
+            <div className="flex-1 h-px bg-white opacity-50"></div>
+            <button className="text-white text-xl">⊖</button>
+          </div>
+          <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-2">
+            {["Roasted Sweet Potatoes", "Garlic Green Beans", "Wild Rice Pilaf", "Honey Cornbread"].map((item) => (
+              <button
+                key={item}
+                onClick={() => openModal(item)}
+                className="bg-[#f0e8e8] text-black text-sm px-3 py-3 rounded-full text-center hover:bg-[#e0d0d0] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Section: Desserts */}
+        <div className="mt-8 mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white font-bold">Desserts</span>
+            <div className="flex-1 h-px bg-white opacity-50"></div>
+            <button className="text-white text-xl">⊖</button>
+          </div>
+          <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-2">
+            {["Chocolate Chip Cookies", "Warm Apple Crisp", "Vanilla Soft Serve", "Fresh Fruit Salad"].map((item) => (
+              <button
+                key={item}
                 onClick={() => openModal(item)}
                 className="bg-[#f0e8e8] text-black text-sm px-3 py-3 rounded-full text-center hover:bg-[#e0d0d0] transition-colors"
               >
