@@ -1,37 +1,161 @@
-import MenuCategory from "@/app/components/menuCategory";
-import Navbar from "./components/navbar";
+"use client";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Navbar from "@/app/components/navbar";
+import MenuItemModal from "@/app/components/menuItemModal";
 
 export default function Home() {
-  return (
-      <div className="bg-white min-h-screen">
-        <Navbar />
-        <div className='flex flex-row w-10/11 h-40 rounded-3xl overflow-hidden justify-center mx-auto mt-5'>
-        <img src='https://i.ytimg.com/vi/YtIF-CP5ycc/maxresdefault.jpg' className='object-cover w-1/3 h-full'></img>
-        <img src='https://college.harvard.edu/sites/default/files/styles/max_800_x_985/public/2022-11/linderpix-Harvard-21210-web.jpg?itok=v2HDrwVm' className='object-cover h-full w-1/3'></img>
-        <img src='https://d3e1m60ptf1oym.cloudfront.net/1a24fa9c-e118-11e3-8d91-f2b86e40979d/140429_HFC_002_xgaplus.jpg' className='object-cover h-full w-1/3'></img>
-        </div>
-        <div className='flex flex-col w-10/11 min-h-screen mb-8 mx-auto mt-5 rounded-2xl bg-[#A51C30]'>
-        <div className='flex flex-row justify-between w-full px-4 py-5 gap-3'>
-          <div className='flex flex-row gap-3'>
-        <div className='flex flex-row bg-white text-gray-700 text-xs px-4 py-2 rounded-full w-15 h-7 items-center justify-center'>Dinner</div>
-        <button type="button" className='flex bg-white text-gray-700 text-xs px-4 py-2 rounded-full w-15 h-7 items-center justify-center cursor-pointer'>Daily</button>
-        <div className='flex flex-row bg-white text-gray-700 text-xs px-4 py-2 rounded-full w-15 h-7 items-center justify-center'>Date</div>
-          </div>
-        <div className='flex flex-row border text-white text-xs px-4 py-2 rounded-full w-15 h-7 items-center justify-center'>Filter</div>
-        </div>
-        <div className="flex flex-row justify-center items-center pb-6 text-white font-bold ">
-              Sun, Mar 8, 2026
-        </div>
-        
-        <MenuCategory />
-        <MenuCategory />
-        <MenuCategory />
-        
+  const [favoriteItems, setFavoriteItems] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    const stored = localStorage.getItem("favoriteItems");
+    return stored ? (JSON.parse(stored) as string[]) : [];
+  });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<string>("");
 
-        </div>
-        
-        
+  const openModal = (itemName: string) => {
+    setSelectedItem(itemName);
+    setModalOpen(true);
+  };
+
+  // Write to localStorage whenever favoriteItems changes
+  useEffect(() => {
+    localStorage.setItem("favoriteItems", JSON.stringify(favoriteItems));
+  }, [favoriteItems]);
+
+  return (
+    <div className="bg-white min-h-screen pb-4">
+
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Image below navbar */}
+      <div className="px-4 mt-4">
+        <Image
+          src="/huds_picture.jpg"
+          alt="Annenberg Hall"
+          width={1000}
+          height={450}
+          className="w-full aspect-[1000/360] object-cover rounded-2xl"
+          priority
+        />
       </div>
 
-      );
+      {/* Red Block */}
+      <div className="bg-[#A51C30] mx-4 mt-4 rounded-2xl p-4">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex gap-2">
+            <button className="bg-white text-black text-sm px-3 py-1 rounded-full">Dinner</button>
+            <button className="bg-white text-black text-sm px-3 py-1 rounded-full flex items-center gap-1">
+              Daily
+              <img src="/drop_down_icon.svg" alt="open daily menu" className="h-4 w-4" />
+            </button>
+            <button className="bg-white text-black text-sm px-3 py-1 rounded-full flex items-center gap-1">
+              5/9/2026
+              <img src="/calendar_icon.svg" alt="select date" className="h-4 w-4" />
+            </button>
+          </div>
+          <button className="bg-white text-black text-sm px-3 py-1 rounded-full flex items-center gap-1">
+            <img src="/filter_icon.svg" alt="filter" className="h-4 w-4" />
+            Filter
+          </button>
+        </div>
+
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <button className="text-white text-xl">‹</button>
+          <span className="text-white font-bold text-lg">Sat, May 9, 2026</span>
+          <button className="text-white text-xl">›</button>
+        </div>
+
+        {/* Section: Entrees */}
+        <div className="mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white font-bold">Entrees</span>
+            <div className="flex-1 h-px bg-white opacity-50"></div>
+            <button className="text-white text-xl">⊖</button>
+          </div>
+          <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-2">
+            {["Ginger Jasmine Rice with Toasted Sesame Oil", "Seasoned Bok Choy", "Steamed Broccoli", "Mapo-Inspired Vegan Tofu"].map((item) => (
+              <button
+                key={item}
+                onClick={() => openModal(item)}
+                className="bg-[#f0e8e8] text-black text-sm px-3 py-3 rounded-full text-center hover:bg-[#e0d0d0] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Section: Salad Bar */}
+        <div className="mt-8 mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white font-bold">Salad Bar</span>
+            <div className="flex-1 h-px bg-white opacity-50"></div>
+            <button className="text-white text-xl">⊖</button>
+          </div>
+          <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-2">
+            {["Caesar Salad", "Baby Arugula", "Cottage Cheese", "Quinoa Black Bean and Roast Corn Salad"].map((item, i) => (
+              <button
+                key={i}
+                onClick={() => openModal(item)}
+                className="bg-[#f0e8e8] text-black text-sm px-3 py-3 rounded-full text-center hover:bg-[#e0d0d0] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Section: Sides */}
+        <div className="mt-8 mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white font-bold">Sides</span>
+            <div className="flex-1 h-px bg-white opacity-50"></div>
+            <button className="text-white text-xl">⊖</button>
+          </div>
+          <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-2">
+            {["Roasted Sweet Potatoes", "Garlic Green Beans", "Wild Rice Pilaf", "Honey Cornbread"].map((item) => (
+              <button
+                key={item}
+                onClick={() => openModal(item)}
+                className="bg-[#f0e8e8] text-black text-sm px-3 py-3 rounded-full text-center hover:bg-[#e0d0d0] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Section: Desserts */}
+        <div className="mt-8 mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white font-bold">Desserts</span>
+            <div className="flex-1 h-px bg-white opacity-50"></div>
+            <button className="text-white text-xl">⊖</button>
+          </div>
+          <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-2">
+            {["Chocolate Chip Cookies", "Warm Apple Crisp", "Vanilla Soft Serve", "Fresh Fruit Salad"].map((item) => (
+              <button
+                key={item}
+                onClick={() => openModal(item)}
+                className="bg-[#f0e8e8] text-black text-sm px-3 py-3 rounded-full text-center hover:bg-[#e0d0d0] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {modalOpen && (
+        <MenuItemModal
+          onClose={() => setModalOpen(false)}
+          itemName={selectedItem}
+          favoriteItems={favoriteItems}
+          setFavoriteItems={setFavoriteItems}
+        />
+      )}
+    </div>
+  );
 }

@@ -52,9 +52,11 @@ export default function Navbar() {
             Houses
           </Link>
           <div className="flex flex-col space-y-2">
-            <button type="button" className={actionBtn}>
-              Food Favorites
-            </button>
+            <Link href="/favorites">
+              <button type="button" className={actionBtn}>
+                Food Favorites
+              </button>
+            </Link>
             <button type="button" className={actionBtn}>
               Macro Tracker
             </button>

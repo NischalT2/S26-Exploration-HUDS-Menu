@@ -18,7 +18,7 @@ export default function HousesPage() {
             <Link href="/Currier">  <HouseIcon name="Currier" imageSrc="/Currier.png" /></Link>
             <Link href="/Dunster">  <HouseIcon name="Dunster" imageSrc="/Dunster.png" /></Link>
             <Link href="/Eliot">  <HouseIcon name="Eliot" imageSrc="/Eliot.png" /></Link>
-            <Link href="/Krickland">  <HouseIcon name="Krickland" imageSrc="/Krickland.png" /></Link>
+            <Link href="/Kirkland">  <HouseIcon name="Kirkland" imageSrc="/Krickland.png" /></Link>
             <Link href="/Leverett">  <HouseIcon name="Leverett" imageSrc="/Lev.png" /></Link>
             <Link href="/Lowell">  <HouseIcon name="Lowell" imageSrc="/Lowell.png" /></Link>
             <Link href="/Mather">  <HouseIcon name="Mather" imageSrc="/Mather.png" /></Link>
